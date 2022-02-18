@@ -96,7 +96,7 @@ def display_image(image, size=None, mode='nearest', unnorm=False, title=''):
     if image.is_cuda:
         image = image.cpu()
     if size is not None and image.size(-1) != size:
-        image = F.interpolate(image, size=(size,size), mode=mode)
+        image = F.interpolate(image, size=(size,size), mode=mode, align_corners=True)
     if image.dim() == 4:
         image = image[0]
     image = image.permute(1, 2, 0).detach().numpy()
